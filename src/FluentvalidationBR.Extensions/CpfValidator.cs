@@ -4,7 +4,7 @@ using Flunt.Validations;
 
 namespace FluentValidationBR.Extensions
 {
-    internal class CpfValidator : PropertyValidator
+    public class CpfValidator : PropertyValidator
     {
 
         private readonly Contract contract;
@@ -26,5 +26,8 @@ namespace FluentValidationBR.Extensions
 
             return true;
         }
+
+        protected override string GetDefaultMessageTemplate()
+        => @"'{PropertyName}' não é um CPF válido.";
     }
 }
