@@ -25,5 +25,8 @@ namespace FluentValidationBR.Extensions
 
             return true;
         }
+
+        protected override string GetDefaultMessageTemplate()
+        => @"'{PropertyName}' não é um CNPJ válido.";
     }
 }
