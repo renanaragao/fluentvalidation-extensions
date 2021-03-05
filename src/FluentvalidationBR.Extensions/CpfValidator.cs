@@ -9,7 +9,7 @@ namespace FluentValidationBR.Extensions
 
         private readonly Contract contract;
 
-        public CpfValidator() : base("CPF_VALIDATOR_MESSAGE")
+        public CpfValidator()
         {
             contract = new Contract();
         }

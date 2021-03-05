@@ -5,7 +5,6 @@ namespace FluentValidationBR.Extensions
     public class IntegerValidator : PropertyValidator
     {
         public IntegerValidator()
-            : base("INTEGER_VALIDATOR_MESSAGE")
         {
         }
 
