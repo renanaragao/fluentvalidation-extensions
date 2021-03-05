@@ -8,7 +8,7 @@ namespace FluentValidationBR.Extensions
     {
         private readonly Contract contract;
 
-        public CnpjValidator() : base("CNPJ_VALIDATOR_MESSAGE")
+        public CnpjValidator()
         {
             contract = new Contract();
         }
