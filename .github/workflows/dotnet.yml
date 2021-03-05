@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore /src/Fluentvalidation.Extensions.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build /src/Fluentvalidation.Extensions.csproj --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test /Fluentvalidation.Extensions.Tests/Fluentvalidation.Extensions.Tests.csproj --no-build --verbosity normal
