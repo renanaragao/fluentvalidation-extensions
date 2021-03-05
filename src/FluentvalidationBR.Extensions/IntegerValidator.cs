@@ -1,8 +1,8 @@
 ﻿using FluentValidation.Validators;
 
-namespace FluentValidation.Extensions
+namespace FluentValidationBR.Extensions
 {
-    internal class IntegerValidator : PropertyValidator
+    public class IntegerValidator : PropertyValidator
     {
         public IntegerValidator()
             : base("INTEGER_VALIDATOR_MESSAGE")

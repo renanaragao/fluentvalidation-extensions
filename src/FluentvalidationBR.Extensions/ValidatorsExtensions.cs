@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace FluentValidation.Extensions
+namespace FluentValidationBR.Extensions
 {
     public static class ValidatorsExtensions
     {
@@ -8,5 +8,6 @@ namespace FluentValidation.Extensions
         public static IRuleBuilderOptions<T, string> Cpf<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new CpfValidator());
         public static IRuleBuilderOptions<T, string> Cnpj<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new CnpjValidator());
         public static IRuleBuilderOptions<T, string> Uri<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new UriValidator());
+        public static IRuleBuilderOptions<T, string> CellPhone<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new CellPhoneValidator());
     }
 }

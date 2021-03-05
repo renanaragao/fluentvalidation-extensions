@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using FluentValidation.Extensions;
+using FluentValidation.TestHelper;
 using Xunit;
 
-namespace Fluentvalidation.Extensions.Tests
+namespace FluentValidationBR.Extensions.Tests
 {
     public class UriValidatorTests
     {
@@ -13,7 +13,6 @@ namespace Fluentvalidation.Extensions.Tests
             validator = new UriValidatorTest();
         }
 
-
         [Theory]
         [InlineData("https//testarrr")]
         [InlineData("httptestarrr")]
@@ -21,7 +20,6 @@ namespace Fluentvalidation.Extensions.Tests
         [InlineData("https:testarrr")]
         [InlineData("")]
         [InlineData(" ")]
-        [InlineData(null)]
         public void Must_Uri_Is_InValid(string uri)
         {
             var result = validator.Validate(new UriTest { Uri = uri });
@@ -29,6 +27,16 @@ namespace Fluentvalidation.Extensions.Tests
             Assert.False(result.IsValid);
             Assert.Equal("'Uri' não é uma URI válida.", result.Errors[0].ErrorMessage);
             Assert.Equal(nameof(UriValidator), result.Errors[0].ErrorCode);
+        }
+
+        [Theory]
+        [InlineData("https://testarrr")]
+        [InlineData("http://testarrr")]
+        [InlineData("https://testarrr:8402")]
+        [InlineData(null)]
+        public void Must_Uri_Is_Valid(string uri)
+        {
+            validator.ShouldNotHaveValidationErrorFor(x => x.Uri, uri);
         }
     }
 

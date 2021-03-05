@@ -2,7 +2,7 @@
 using Flunt.Br.Extensions;
 using Flunt.Validations;
 
-namespace FluentValidation.Extensions
+namespace FluentValidationBR.Extensions
 {
     internal class CpfValidator : PropertyValidator
     {

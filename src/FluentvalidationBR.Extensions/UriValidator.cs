@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Validators;
 using System;
 
-namespace FluentValidation.Extensions
+namespace FluentValidationBR.Extensions
 {
     public class UriValidator : PropertyValidator
     {
@@ -9,7 +9,7 @@ namespace FluentValidation.Extensions
         {
             var value = context.PropertyValue as string;
 
-            if (!Uri.TryCreate(value, UriKind.Absolute, out _))
+            if (value != null && !Uri.TryCreate(value, UriKind.Absolute, out _))
             {
                 context.MessageFormatter.AppendArgument(nameof(UriValidator), value);
                 return false;

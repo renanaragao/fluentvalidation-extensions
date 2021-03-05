@@ -2,12 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Fluentvalidation.Extensions</RootNamespace>
+    <RootNamespace>FluentValidationBR.Extensions</RootNamespace>
     <Authors>Renan Aragão</Authors>
     <Description>Extra built-in validations for Fluentvalidation.</Description>
     <PackageProjectUrl>https://github.com/renanaragao/fluentvalidation-extensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/renanaragao/fluentvalidation-extensions</RepositoryUrl>
-    <PackageTags>CPF CNPJ Integer URI</PackageTags>
+    <PackageTags>CPF CNPJ Integer URI CellPhone</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>FluentvalidationBR.Extensions</PackageId>
+    <Product>FluentvalidationBR.Extensions</Product>
+    <AssemblyName>FluentValidationBR.Extensions</AssemblyName>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
