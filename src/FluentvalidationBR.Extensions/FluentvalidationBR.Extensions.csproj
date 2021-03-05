@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>FluentValidationBR.Extensions</RootNamespace>
+    <Authors>Renan Aragão</Authors>
+    <Description>Extra built-in validations for Fluentvalidation.</Description>
+    <PackageProjectUrl>https://github.com/renanaragao/fluentvalidation-extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/renanaragao/fluentvalidation-extensions</RepositoryUrl>
+    <PackageTags>CPF CNPJ Integer URI CellPhone</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>FluentvalidationBR.Extensions</PackageId>
+    <Product>FluentvalidationBR.Extensions</Product>
+    <AssemblyName>FluentValidationBR.Extensions</AssemblyName>
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>5</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.5.1" />
+    <PackageReference Include="Flunt.Br" Version="1.4.1" />
+  </ItemGroup>
+
+</Project>

@@ -1,13 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <RootNamespace>FluentValidationBR.Extensions.Tests</RootNamespace>
+
+    <AssemblyName>FluentValidationBR.Extensions.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="9.5.1" />
+    <PackageReference Include="FluentValidation.Validators.UnitTestExtension" Version="1.9.0.13" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -21,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Fluentvalidation.Extensions.csproj" />
+    <ProjectReference Include="..\FluentvalidationBR.Extensions\FluentvalidationBR.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
