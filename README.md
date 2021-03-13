@@ -18,6 +18,9 @@ For now we have:
  - IntegerValidator
  - UriValidator
  - CellPhoneValidator
+ - PhoneValidator
+ - CepValidator
+ - IpValidator
 
 ### How do I use it? ###
 
