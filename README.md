@@ -29,11 +29,14 @@ class SampleValidator : AbstractValidator<Sample>
 {
       public SampleValidator()
       {
-          RuleFor(x => x.Celular).CellPhone();
+          RuleFor(x => x.CellPhone).CellPhone();
           RuleFor(x => x.Number).Integer();
           RuleFor(x => x.Site).Uri();
           RuleFor(x => x.Cpf).Cpf();
           RuleFor(x => x.Cnpj).Cnpj();
+          RuleFor(x => x.Cep).Cep();
+          RuleFor(x => x.Phone).Phone();
+          RuleFor(x => x.Ip).Ip();
       }
 }
 
@@ -43,7 +46,10 @@ class Sample
      public string Number { get; set; }
      public string Cpf { get; set; }
      public string Cnpj { get; set; }
-     public string Celular { get; set; }
+     public string CellPhone { get; set; }
+     public string Phone { get; set; }
+     public string Cep { get; set; }
+     public string Ip { get; set; }
 }
  ```
  
