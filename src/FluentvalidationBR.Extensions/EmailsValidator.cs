@@ -7,14 +7,7 @@ namespace FluentValidationBR.Extensions
 {
     public class EmailsValidator : PropertyValidator
     {
-
-        private readonly Contract contract;
         private IEnumerable<string> emailsInvalidos;
-
-        public EmailsValidator()
-        {
-            contract = new Contract();
-        }
 
         protected override bool IsValid(PropertyValidatorContext context)
         {
@@ -25,7 +18,7 @@ namespace FluentValidationBR.Extensions
 
             emailsInvalidos = value.Split(';')
                 .Select(x => x.Trim())
-                .Where(x => !string.IsNullOrWhiteSpace(x) && contract.IsEmail(x, string.Empty, string.Empty).Invalid)
+                .Where(x => !string.IsNullOrWhiteSpace(x) && new Contract().IsEmail(x, string.Empty, string.Empty).Invalid)
                 .ToList();
 
             if (!emailsInvalidos.Any()) return true;
