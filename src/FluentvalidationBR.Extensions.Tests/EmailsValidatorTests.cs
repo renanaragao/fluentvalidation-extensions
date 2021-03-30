@@ -21,6 +21,10 @@ namespace FluentValidationBR.Extensions.Tests
         [InlineData("email@com.br;email@;test;test2", "'email@', 'test', 'test2'")]
         [InlineData("email@com.br;email@;;test2", "'email@', 'test2'")]
         [InlineData("email@com.br;email@; ;test2", "'email@', 'test2'")]
+        [InlineData("casdadsd;asdasdd;teste@hotmail.com", "'casdadsd', 'asdasdd'")]
+        [InlineData("casdadsd;asdasdd;teste@hotmail.com;teste1@hotmail.com", "'casdadsd', 'asdasdd'")]
+        [InlineData("casdadsd;teste@hotmail.com;asdasdd;", "'casdadsd', 'asdasdd'")]
+        [InlineData("casdadsd;teste@hotmail.com;teste1@hotmail.com;asdasdd;", "'casdadsd', 'asdasdd'")]
 
         public void Must_Is_InValid(string emails, string emailsInvalidos)
         {
