@@ -21,6 +21,7 @@ For now we have:
  - PhoneValidator
  - CepValidator
  - IpValidator
+ - EmailsValidator - Validate one or more separate emails with ';'
 
 ### How do I use it? ###
 
