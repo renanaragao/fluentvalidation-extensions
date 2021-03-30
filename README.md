@@ -37,6 +37,7 @@ class SampleValidator : AbstractValidator<Sample>
           RuleFor(x => x.Cep).Cep();
           RuleFor(x => x.Phone).Phone();
           RuleFor(x => x.Ip).Ip();
+          RuleFor(x => x.Ip).Emails(); //Validate one or more separate emails with ';'
       }
 }
 
