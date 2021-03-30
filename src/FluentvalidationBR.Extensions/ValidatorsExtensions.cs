@@ -13,5 +13,12 @@ namespace FluentValidationBR.Extensions
         public static IRuleBuilderOptions<T, string> Cep<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new CepValidator());
         public static IRuleBuilderOptions<T, string> Phone<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new PhoneValidator());
         public static IRuleBuilderOptions<T, string> Ip<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new IpValidator());
+        /// <summary>
+        /// Validate one or more separate emails with ';'
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ruleBuilder"></param>
+        /// <returns></returns>
+        public static IRuleBuilderOptions<T, string> Emails<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new EmailsValidator());
     }
 }
