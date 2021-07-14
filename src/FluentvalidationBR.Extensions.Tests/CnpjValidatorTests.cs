@@ -25,7 +25,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'CNPJ' não é um CNPJ válido.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(CnpjValidator), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(CnpjValidator<CnpjTest>), result.Errors[0].ErrorCode);
         }
 
         [Theory]
@@ -34,7 +34,9 @@ namespace FluentValidationBR.Extensions.Tests
         [InlineData(null)]
         public void Must_Is_Valid(string cnpj)
         {
-            validator.ShouldNotHaveValidationErrorFor(x => x.CNPJ, cnpj);
+            var result = validator.TestValidate(new CnpjTest { CNPJ = cnpj });
+
+            result.ShouldNotHaveValidationErrorFor(x => x.CNPJ);
         }
     }
 

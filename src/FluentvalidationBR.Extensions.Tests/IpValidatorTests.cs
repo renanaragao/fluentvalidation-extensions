@@ -1,9 +1,8 @@
 using FluentValidation;
 using FluentValidation.TestHelper;
-using FluentValidationBR.Extensions;
 using Xunit;
 
-namespace FluentvalidationBR.Extensions.Tests
+namespace FluentValidationBR.Extensions.Tests
 {
     public class IpValidatorTests
     {
@@ -27,7 +26,7 @@ namespace FluentvalidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Ip' não é um IP válido.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(IpValidator), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(IpValidator<IpTest>), result.Errors[0].ErrorCode);
         }
 
         [Theory]
@@ -37,7 +36,9 @@ namespace FluentvalidationBR.Extensions.Tests
         [InlineData(null)]
         public void Must_Is_Valid(string ip)
         {
-            validator.ShouldNotHaveValidationErrorFor(x => x.Ip, ip);
+            var result = validator.TestValidate(new IpTest { Ip = ip });
+
+            result.ShouldNotHaveValidationErrorFor(x => x.Ip);
         }
     }
 

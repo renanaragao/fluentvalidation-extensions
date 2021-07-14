@@ -1,9 +1,8 @@
 using FluentValidation;
 using FluentValidation.TestHelper;
 using Xunit;
-using FluentValidationBR.Extensions;
 
-namespace FluentvalidationBR.Extensions.Tests
+namespace FluentValidationBR.Extensions.Tests
 {
     public class CepValidatorTests
     {
@@ -26,16 +25,19 @@ namespace FluentvalidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Cep' não é um CEP válido.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(CepValidator), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(CepValidator<CepTest>), result.Errors[0].ErrorCode);
         }
 
         [Theory]
         [InlineData("07940-200")]
+        [InlineData("07.940-200")]
         [InlineData("07940200")]
         [InlineData(null)]
         public void Must_Is_Valid(string cep)
         {
-            validator.ShouldNotHaveValidationErrorFor(x => x.Cep, cep);
+            var result = validator.TestValidate(new CepTest { Cep = cep });
+
+            result.ShouldNotHaveValidationErrorFor(x => x.Cep);
         }
     }
 
@@ -49,6 +51,6 @@ namespace FluentvalidationBR.Extensions.Tests
         public CepValidatorTest()
         {
             RuleFor(x => x.Cep).Cep();
-        }    
+        }
     }
 }

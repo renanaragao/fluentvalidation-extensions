@@ -1,33 +1,32 @@
+using FluentValidation;
 using FluentValidation.Validators;
-using Flunt.Validations;
-using Flunt.Br.Extensions;
+using Flunt.Extensions.Br.Validations;
+using System.Text.RegularExpressions;
 
-namespace FluentvalidationBR.Extensions
+namespace FluentValidationBR.Extensions
 {
-    public class CepValidator : PropertyValidator
+    public class CepValidator<T> : PropertyValidator<T, string>
     {
 
-        private readonly Contract contract;
+        public override string Name => nameof(CepValidator<T>);
 
-        public CepValidator()
+        protected override string GetDefaultMessageTemplate(string erroCode)
+        => @"'{PropertyName}' não é um CEP válido.";
+
+        public override bool IsValid(ValidationContext<T> context, string value)
         {
-            contract = new Contract();
-        }
+            if (value == null)
+                return true;
 
-        protected override bool IsValid(PropertyValidatorContext context)
-        {
-            var value = context.PropertyValue as string;
+            value = Regex.Replace(value, @"\D", "");
 
-            if (value != null && !contract.IsCep(value, string.Empty, string.Empty).Valid)
+            if (!Regex.Match(value, @"^\d{8}$").Success)
             {
-                context.MessageFormatter.AppendArgument(nameof(CepValidator), value);
+                context.MessageFormatter.AppendArgument(nameof(CepValidator<T>), value);
                 return false;
             }
 
             return true;
         }
-
-        protected override string GetDefaultMessageTemplate()
-        => @"'{PropertyName}' não é um CEP válido.";
     }
 }

@@ -1,24 +1,25 @@
-﻿using FluentValidation.Validators;
+﻿using FluentValidation;
+using FluentValidation.Validators;
 using System;
 
 namespace FluentValidationBR.Extensions
 {
-    public class UriValidator : PropertyValidator
+    public class UriValidator<T> : PropertyValidator<T, string>
     {
-        protected override bool IsValid(PropertyValidatorContext context)
-        {
-            var value = context.PropertyValue as string;
+        public override string Name => nameof(UriValidator<T>);
 
+        protected override string GetDefaultMessageTemplate(string erroCode)
+        => @"'{PropertyName}' não é uma URI válida.";
+
+        public override bool IsValid(ValidationContext<T> context, string value)
+        {
             if (value != null && !Uri.TryCreate(value, UriKind.Absolute, out _))
             {
-                context.MessageFormatter.AppendArgument(nameof(UriValidator), value);
+                context.MessageFormatter.AppendArgument(nameof(UriValidator<T>), value);
                 return false;
             }
 
             return true;
         }
-
-        protected override string GetDefaultMessageTemplate()
-        => @"'{PropertyName}' não é uma URI válida.";
     }
 }

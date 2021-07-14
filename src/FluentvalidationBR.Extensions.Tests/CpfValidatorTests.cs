@@ -25,7 +25,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'CPF' não é um CPF válido.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(CpfValidator), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(CpfValidator<CpfTest>), result.Errors[0].ErrorCode);
         }
 
         [Theory]
@@ -34,7 +34,9 @@ namespace FluentValidationBR.Extensions.Tests
         [InlineData(null)]
         public void Must_Is_Valid(string cpf)
         {
-            validator.ShouldNotHaveValidationErrorFor(x => x.CPF, cpf);
+            var result = validator.TestValidate(new CpfTest { CPF = cpf });
+
+            result.ShouldNotHaveValidationErrorFor(x => x.CPF);
         }
     }
 
