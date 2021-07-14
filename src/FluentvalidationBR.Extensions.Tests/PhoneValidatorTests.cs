@@ -1,9 +1,8 @@
 using FluentValidation;
 using FluentValidation.TestHelper;
 using Xunit;
-using FluentValidationBR.Extensions;
 
-namespace FluentvalidationBR.Extensions.Tests
+namespace FluentValidationBR.Extensions.Tests
 {
     public class PhoneValidatorTests
     {
@@ -18,6 +17,8 @@ namespace FluentvalidationBR.Extensions.Tests
         [InlineData("145698")]
         [InlineData("123456789124")]
         [InlineData("39223797889")]
+        [InlineData("+55 21 99586-8978")]
+        [InlineData("+5521995868978")]
         [InlineData("")]
         [InlineData(" ")]
         public void Must_Is_InValid(string phone)
@@ -26,7 +27,7 @@ namespace FluentvalidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Phone' não é um Telefone válido.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(PhoneValidator), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(PhoneValidator<PhoneTest>), result.Errors[0].ErrorCode);
         }
 
         [Theory]
@@ -37,7 +38,9 @@ namespace FluentvalidationBR.Extensions.Tests
         [InlineData(null)]
         public void Must_Is_Valid(string phone)
         {
-            validator.ShouldNotHaveValidationErrorFor(x => x.Phone, phone);
+            var result = validator.TestValidate(new PhoneTest { Phone = phone });
+
+            result.ShouldNotHaveValidationErrorFor(x => x.Phone);
         }
     }
 

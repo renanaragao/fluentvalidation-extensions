@@ -26,7 +26,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Number' não é um número válido.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(IntegerValidator), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(IntegerValidator<IntegerTest>), result.Errors[0].ErrorCode);
         }
 
         [Theory]
@@ -35,7 +35,9 @@ namespace FluentValidationBR.Extensions.Tests
         [InlineData(null)]
         public void Must_Is_Valid(string number)
         {
-            validator.ShouldNotHaveValidationErrorFor(x => x.Number, number);
+            var result = validator.TestValidate(new IntegerTest { Number = number });
+
+            result.ShouldNotHaveValidationErrorFor(x => x.Number);
         }
     }
 

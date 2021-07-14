@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>FluentValidationBR.Extensions</RootNamespace>
     <Authors>Renan Aragão</Authors>
     <Description>Extra built-in validations for Fluentvalidation.</Description>
@@ -12,7 +12,9 @@
     <PackageId>FluentvalidationBR.Extensions</PackageId>
     <Product>FluentvalidationBR.Extensions</Product>
     <AssemblyName>FluentValidationBR.Extensions</AssemblyName>
-    <Version>1.3.1</Version>
+    <Version>2.3.1</Version>
+    <AssemblyVersion>2.3.1.0</AssemblyVersion>
+    <PackageReleaseNotes>Update for fluent validation 10</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,8 +22,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="9.5.1" />
-    <PackageReference Include="Flunt.Br" Version="1.4.1" />
+    <PackageReference Include="FluentValidation" Version="10.3.0" />
+    <PackageReference Include="Flunt.Br" Version="2.0.0" />
+    <PackageReference Include="Flunt.Extensions.Br" Version="1.0.1" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.12.27" />
   </ItemGroup>
 
 </Project>

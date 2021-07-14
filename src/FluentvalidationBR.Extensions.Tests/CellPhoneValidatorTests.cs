@@ -15,7 +15,10 @@ namespace FluentValidationBR.Extensions.Tests
 
         [Theory]
         [InlineData("145698")]
-        [InlineData("123456789124")]
+        [InlineData("12345678911")]
+        [InlineData("1234567891")]
+        [InlineData("+55 12 3456-7891")]
+        [InlineData("+551234567891")]
         [InlineData("")]
         [InlineData(" ")]
         public void Must_CellPhone_Is_InValid(string cellPhone)
@@ -24,16 +27,20 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Cell Phone' não é um número de celular válida.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(CellPhoneValidator), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(CellPhoneValidator<CellPhoneTest>), result.Errors[0].ErrorCode);
         }
 
         [Theory]
-        [InlineData("11996587898")]
-        [InlineData("(11) 9 9658-7898")]
+        [InlineData("11 9 9658-7898")]
+        [InlineData("+55 11 9 9658-7898")]
+        [InlineData("+5511996587898")]
+        [InlineData("+55 (11) 9 96587-898")]
         [InlineData(null)]
         public void Must_CellPhone_Is_Valid(string cellPhone)
         {
-            validator.ShouldNotHaveValidationErrorFor(x => x.CellPhone, cellPhone);
+            var result = validator.TestValidate(new CellPhoneTest { CellPhone = cellPhone });
+
+            result.ShouldNotHaveValidationErrorFor(x => x.CellPhone);
         }
     }
 

@@ -1,29 +1,29 @@
 using System.Net;
+using FluentValidation;
 using FluentValidation.Validators;
 
-namespace FluentvalidationBR.Extensions
+namespace FluentValidationBR.Extensions
 {
-    public class IpValidator: PropertyValidator
+    public class IpValidator<T>: PropertyValidator<T, string>
     {
+        public override string Name => nameof(IpValidator<T>);
 
         public IpValidator()
         {
         }
 
-        protected override bool IsValid(PropertyValidatorContext context)
-        {
-            var value = context.PropertyValue as string;
+        protected override string GetDefaultMessageTemplate(string erroCode)
+        => @"'{PropertyName}' não é um IP válido.";
 
+        public override bool IsValid(ValidationContext<T> context, string value)
+        {
             if (value != null && !IPAddress.TryParse(value, out var _))
             {
-                context.MessageFormatter.AppendArgument(nameof(IpValidator), value);
+                context.MessageFormatter.AppendArgument(nameof(IpValidator<T>), value);
                 return false;
             }
 
             return true;
         }
-
-        protected override string GetDefaultMessageTemplate()
-        => @"'{PropertyName}' não é um IP válido.";
     }
 }

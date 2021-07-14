@@ -32,7 +32,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal($"'Emails' contém o(s) seguinte(s) e-mail(s) inválido(s): {emailsInvalidos}.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(EmailsValidator), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(EmailsValidator<EmailsTest>), result.Errors[0].ErrorCode);
         }
 
         [Theory]
@@ -47,7 +47,9 @@ namespace FluentValidationBR.Extensions.Tests
         [InlineData(" ")]
         public void Must_Is_Valid(string emails)
         {
-            validator.ShouldNotHaveValidationErrorFor(x => x.Emails, emails);
+            var result = validator.TestValidate(new EmailsTest { Emails = emails });
+
+            result.ShouldNotHaveValidationErrorFor(x => x.Emails);
         }
     }
 

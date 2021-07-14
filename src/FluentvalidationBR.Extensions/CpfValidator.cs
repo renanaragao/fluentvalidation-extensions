@@ -1,33 +1,41 @@
-﻿using FluentValidation.Validators;
+﻿using FluentValidation;
+using FluentValidation.Validators;
 using Flunt.Br.Extensions;
+using Flunt.Extensions.Br.Validations;
 using Flunt.Validations;
+using System.Text.RegularExpressions;
 
 namespace FluentValidationBR.Extensions
 {
-    public class CpfValidator : PropertyValidator
+    public class CpfValidator<T> : PropertyValidator<T, string>
     {
 
-        private readonly Contract contract;
+        private readonly Contract<T> contract;
+
+        public override string Name => nameof(CpfValidator<T>);
 
         public CpfValidator()
         {
-            contract = new Contract();
+            contract = new Contract<T>();
         }
 
-        protected override bool IsValid(PropertyValidatorContext context)
-        {
-            var value = context.PropertyValue as string;
+        protected override string GetDefaultMessageTemplate(string erroCode)
+        => @"'{PropertyName}' não é um CPF válido.";
 
-            if (value != null && !contract.IsCpf(value, string.Empty, string.Empty).Valid)
+        public override bool IsValid(ValidationContext<T> context, string value)
+        {
+            if (value == null)
+                return true;
+
+            value = Regex.Replace(value, @"\D", "");
+
+            if (!contract.IsCpf(value, string.Empty).IsValid)
             {
-                context.MessageFormatter.AppendArgument(nameof(CpfValidator), value);
+                context.MessageFormatter.AppendArgument(nameof(CpfValidator<T>), value);
                 return false;
             }
 
             return true;
         }
-
-        protected override string GetDefaultMessageTemplate()
-        => @"'{PropertyName}' não é um CPF válido.";
     }
 }
