@@ -20,12 +20,12 @@ namespace FluentValidationBR.Extensions.Tests
         [InlineData("email@com.br;email@;test", "'email@', 'test'")]
         [InlineData("email@com.br;email@;test;test2", "'email@', 'test', 'test2'")]
         [InlineData("email@com.br;email@;;test2", "'email@', 'test2'")]
-        [InlineData("email@com.br;email@; ;test2", "'email@', 'test2'")]
+        [InlineData("email@com.br;email@; ;test2", "'email@', ' ', 'test2'")]
         [InlineData("casdadsd;asdasdd;teste@hotmail.com", "'casdadsd', 'asdasdd'")]
         [InlineData("casdadsd;asdasdd;teste@hotmail.com;teste1@hotmail.com", "'casdadsd', 'asdasdd'")]
         [InlineData("casdadsd;teste@hotmail.com;asdasdd;", "'casdadsd', 'asdasdd'")]
         [InlineData("casdadsd;teste@hotmail.com;teste1@hotmail.com;asdasdd;", "'casdadsd', 'asdasdd'")]
-
+        [InlineData(" ", "' '")]
         public void Must_Is_InValid(string emails, string emailsInvalidos)
         {
             var result = validator.Validate(new EmailsTest { Emails = emails });
@@ -38,13 +38,12 @@ namespace FluentValidationBR.Extensions.Tests
         [Theory]
         [InlineData("email@com.br;")]
         [InlineData("email@com.br")]
-        [InlineData("email@com.br; teste@com.br;email3@com.br")]
-        [InlineData("email@com.br; teste@com.br ;email3@com.br")]
-        [InlineData("email@com.br;teste@com.br ;email3@com.br")]
+        [InlineData("email@com.br;teste@com.br;email3@com.br")]
+        [InlineData("email@com.br;teste@com.br;email3@com.br")]
+        [InlineData("email@com.br;teste@com.br;email3@com.br")]
         [InlineData("email@com.br;teste@com.br;email3@com.br")]
         [InlineData(null)]
         [InlineData("")]
-        [InlineData(" ")]
         public void Must_Is_Valid(string emails)
         {
             var result = validator.TestValidate(new EmailsTest { Emails = emails });

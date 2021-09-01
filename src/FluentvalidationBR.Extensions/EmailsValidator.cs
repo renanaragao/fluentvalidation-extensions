@@ -21,12 +21,11 @@ namespace FluentValidationBR.Extensions
 
         public override bool IsValid(FluentValidation.ValidationContext<T> context, string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (string.IsNullOrEmpty(value))
                 return true;
 
             emailsInvalidos = value.Split(';')
-                .Select(x => x.Trim())
-                .Where(x => !string.IsNullOrWhiteSpace(x) && !Activator.CreateInstance<Contract<T>>().IsEmail(x, string.Empty).IsValid)
+                .Where(x => !string.IsNullOrEmpty(x) && !Activator.CreateInstance<Contract<T>>().IsEmail(x, string.Empty).IsValid)
                 .ToList();
 
             if (!emailsInvalidos.Any()) return true;
