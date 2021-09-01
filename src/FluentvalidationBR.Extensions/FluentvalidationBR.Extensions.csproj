@@ -12,8 +12,8 @@
     <PackageId>FluentvalidationBR.Extensions</PackageId>
     <Product>FluentvalidationBR.Extensions</Product>
     <AssemblyName>FluentValidationBR.Extensions</AssemblyName>
-    <Version>2.3.1</Version>
-    <AssemblyVersion>2.3.1.0</AssemblyVersion>
+    <Version>2.3.2</Version>
+    <AssemblyVersion>2.3.2.0</AssemblyVersion>
     <PackageReleaseNotes>Update for fluent validation 10</PackageReleaseNotes>
   </PropertyGroup>
 
