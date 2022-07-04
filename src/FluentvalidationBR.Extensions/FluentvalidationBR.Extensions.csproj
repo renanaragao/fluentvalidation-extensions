@@ -7,14 +7,14 @@
     <Description>Extra built-in validations for Fluentvalidation.</Description>
     <PackageProjectUrl>https://github.com/renanaragao/fluentvalidation-extensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/renanaragao/fluentvalidation-extensions</RepositoryUrl>
-    <PackageTags>CPF CNPJ Integer URI CellPhone Phone IP CEP Emails</PackageTags>
+    <PackageTags>CPF CNPJ Integer URI CellPhone Phone IP CEP Emails Lists</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>FluentvalidationBR.Extensions</PackageId>
     <Product>FluentvalidationBR.Extensions</Product>
     <AssemblyName>FluentValidationBR.Extensions</AssemblyName>
-    <Version>2.3.2</Version>
-    <AssemblyVersion>2.3.2.0</AssemblyVersion>
-    <PackageReleaseNotes>Update for fluent validation 10</PackageReleaseNotes>
+    <Version>2.4.2</Version>
+    <AssemblyVersion>2.4.2.0</AssemblyVersion>
+    <PackageReleaseNotes>Add Unique Item List</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
