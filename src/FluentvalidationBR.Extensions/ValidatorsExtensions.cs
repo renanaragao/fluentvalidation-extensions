@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
-using FluentValidationBR.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace FluentValidationBR.Extensions
 {
@@ -13,6 +15,12 @@ namespace FluentValidationBR.Extensions
         public static IRuleBuilderOptions<T, string> Cep<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new CepValidator<T>());
         public static IRuleBuilderOptions<T, string> Phone<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new PhoneValidator<T>());
         public static IRuleBuilderOptions<T, string> Ip<T>(this IRuleBuilder<T, string> ruleBuilder) => ruleBuilder.SetValidator(new IpValidator<T>());
+        public static IRuleBuilderOptions<T, IEnumerable<TProperty>> IsUnique<T, TProperty, TKey>(this IRuleBuilder<T, IEnumerable<TProperty>> ruleBuilder, Expression<Func<TProperty, TKey>> keySelector)
+            => ruleBuilder.SetValidator(new IsUniqueValidator<T, TProperty, TKey>(keySelector));
+        public static IRuleBuilderOptions<T, IEnumerable<TProperty>> IsUnique<T, TProperty, TKey>(this IRuleBuilder<T, IEnumerable<TProperty>> ruleBuilder, Expression<Func<T, IEnumerable<TProperty>>> expression, Expression<Func<TProperty, TKey>> keySelector)
+            => ruleBuilder.SetValidator(new IsUniqueValidator<T, TProperty, TKey>(expression, keySelector));
+        public static IRuleBuilderOptions<T, IEnumerable<TProperty>> IsUnique<T, TProperty>(this IRuleBuilder<T, IEnumerable<TProperty>> ruleBuilder)
+            => ruleBuilder.SetValidator(new IsUniqueValidator<T, TProperty>());
         /// <summary>
         /// Validate one or more separate emails with ';'
         /// </summary>
