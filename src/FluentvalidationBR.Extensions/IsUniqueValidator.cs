@@ -44,7 +44,7 @@ namespace FluentValidationBR.Extensions
 
             var propertyNameOtherList = GetPropertyName(otherExpression.Body);
 
-            messageTemplate = @$"Existem elementos com a propriedade '{propertyNameKeySelector.Humanize(LetterCasing.Title)}' igual entre a lista '{{PropertyName}}' e '{propertyNameOtherList.Humanize(LetterCasing.Title)}'.";
+            messageTemplate = $@"Existem elementos com a propriedade '{propertyNameKeySelector.Humanize(LetterCasing.Title)}' igual entre a lista '{{PropertyName}}' e '{propertyNameOtherList.Humanize(LetterCasing.Title)}'.";
 
             var otherList = (IEnumerable<TProperty>)context.InstanceToValidate.GetType().GetProperty(propertyNameOtherList).GetValue(context.InstanceToValidate);
 
