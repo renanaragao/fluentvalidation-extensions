@@ -30,23 +30,30 @@ namespace FluentValidationBR.Extensions
 
         private bool Valid(string value)
         {
-            if (value == null)
-                return true;
+            try
+            {
+                if (value == null)
+                    return true;
 
-            if (string.Empty == value.Trim())
+                if (string.Empty == value.Trim())
+                    return false;
+
+                var phoneNumber = phoneNumberUtil.Parse(value, "BR");
+
+                if (!phoneNumberUtil.IsValidNumber(phoneNumber))
+                    return false;
+
+                var phoneNumberType = phoneNumberUtil.GetNumberType(phoneNumber);
+
+                if (phoneNumberType == PhoneNumberType.FIXED_LINE)
+                    return true;
+
                 return false;
-
-            var phoneNumber = phoneNumberUtil.Parse(value, "BR");
-
-            if (!phoneNumberUtil.IsValidNumber(phoneNumber))
+            }
+            catch
+            {
                 return false;
-
-            var phoneNumberType = phoneNumberUtil.GetNumberType(phoneNumber);
-
-            if (phoneNumberType == PhoneNumberType.FIXED_LINE)
-                return true;
-
-            return false;
+            }
         }
     }
 }

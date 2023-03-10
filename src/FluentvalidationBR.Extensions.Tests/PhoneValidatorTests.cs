@@ -21,6 +21,7 @@ namespace FluentValidationBR.Extensions.Tests
         [InlineData("+5521995868978")]
         [InlineData("")]
         [InlineData(" ")]
+        [InlineData("3fsdfqaf34afagsbfh")]
         public void Must_Is_InValid(string phone)
         {
             var result = validator.Validate(new PhoneTest { Phone = phone });
