@@ -26,7 +26,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Uri' não é uma URI válida.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(UriValidator<UriTest>), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(UriValidator<>), result.Errors[0].ErrorCode);
         }
 
         [Theory]

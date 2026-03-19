@@ -28,7 +28,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Phone' não é um Telefone válido.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(PhoneValidator<PhoneTest>), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(PhoneValidator<>), result.Errors[0].ErrorCode);
         }
 
         [Theory]

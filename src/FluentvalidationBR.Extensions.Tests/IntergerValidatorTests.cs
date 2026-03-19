@@ -26,7 +26,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Number' não é um número válido.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(IntegerValidator<IntegerTest>), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(IntegerValidator<>), result.Errors[0].ErrorCode);
         }
 
         [Theory]

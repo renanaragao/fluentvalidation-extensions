@@ -25,7 +25,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Cep' não é um CEP válido.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(CepValidator<CepTest>), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(CepValidator<>), result.Errors[0].ErrorCode);
         }
 
         [Theory]

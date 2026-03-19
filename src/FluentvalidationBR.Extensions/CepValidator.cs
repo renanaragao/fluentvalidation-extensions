@@ -1,6 +1,5 @@
 using FluentValidation;
 using FluentValidation.Validators;
-using Flunt.Extensions.Br.Validations;
 using System.Text.RegularExpressions;
 
 namespace FluentValidationBR.Extensions
