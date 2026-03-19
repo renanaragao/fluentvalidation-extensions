@@ -26,7 +26,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Ip' não é um IP válido.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(IpValidator<IpTest>), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(IpValidator<>), result.Errors[0].ErrorCode);
         }
 
         [Theory]

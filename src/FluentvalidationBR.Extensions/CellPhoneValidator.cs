@@ -1,8 +1,5 @@
-﻿using System;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Validators;
-using Flunt.Extensions.Br.Validations;
-using Flunt.Validations;
 using PhoneNumbers;
 
 namespace FluentValidationBR.Extensions

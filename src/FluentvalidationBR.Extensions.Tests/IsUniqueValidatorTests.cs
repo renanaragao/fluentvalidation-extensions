@@ -28,7 +28,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Id' deve ser único.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(IsUniqueValidator<DocumentTest, ItemDocumentTest, string>), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(IsUniqueValidator<,,>), result.Errors[0].ErrorCode);
         }
         [Fact]
         public void Must_Validate_Duplicates_Between_Lists()
@@ -60,7 +60,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("Existem elementos com a propriedade 'Id' igual entre a lista 'Items A' e 'Items B'.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(IsUniqueValidator<DocumentTest, ItemDocumentTest, string>), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(IsUniqueValidator<,,>), result.Errors[0].ErrorCode);
         }
 
         [Theory, MemberData(nameof(GetValidItems))]
@@ -83,7 +83,7 @@ namespace FluentValidationBR.Extensions.Tests
 
             Assert.False(result.IsValid);
             Assert.Equal("'Codes' não deve conter elementos duplicados.", result.Errors[0].ErrorMessage);
-            Assert.Equal(nameof(IsUniqueValidator<DocumentTest, string>), result.Errors[0].ErrorCode);
+            Assert.Equal(nameof(IsUniqueValidator<,>), result.Errors[0].ErrorCode);
         }
 
         public static IEnumerable<object[]> GetValidItems()
